@@ -1,41 +1,36 @@
 import numpy as np
-from collections import namedtuple
-
-
-Visit = namedtuple('Visit', 'position steps')
 
 
 def go_one_step(old_state, direction):
     """
     Takes old position and command and returns new position.
-    >>> go_one_step(Visit(position=(0,0), steps=0), 'R')
-    Visit(position=(1, 0), steps=1)
-    >>> go_one_step(Visit(position=(1,1), steps=1), 'L')
-    Visit(position=(0, 1), steps=2)
-    >>> go_one_step(Visit(position=(0,0), steps=2), 'U')
-    Visit(position=(0, 1), steps=3)
-    >>> go_one_step(Visit(position=(-1,-1), steps=3), 'D')
-    Visit(position=(-1, -2), steps=4)
+    >>> go_one_step((0,0), 'R')
+    (1, 0)
+    >>> go_one_step((1,1), 'L')
+    (0, 1)
+    >>> go_one_step((0,0), 'U')
+    (0, 1)
+    >>> go_one_step((-1,-1), 'D')
+    (-1, -2)
     """
     assert direction in ['R', 'L', 'U', 'D']
 
-    x, y = old_state.position
-    s = old_state.steps
+    x, y = old_state
     if direction == 'R':
-        return Visit(position=(x+1, y), steps=s+1)
+        return (x+1, y)
     if direction == 'L':
-        return Visit(position=(x-1, y), steps=s+1)
+        return (x-1, y)
     if direction == 'U':
-        return Visit(position=(x, y+1), steps=s+1)
+        return (x, y+1)
     if direction == 'D':
-        return Visit(position=(x, y-1), steps=s+1)
+        return (x, y-1)
 
 
 def apply_one_command(old_state, command):
     """
     Applies one command.
-    >>> list(apply_one_command(Visit(position=(1,1), steps=2), 'R2'))
-    [Visit(position=(2, 1), steps=3), Visit(position=(3, 1), steps=4)]
+    >>> list(apply_one_command((1,1), 'R2'))
+    [(2, 1), (3, 1)]
     """
     direction = command[0]
     times = int(command[1:])
@@ -48,10 +43,10 @@ def get_one_path(commands):
     """
     Get one path, given a list of commands. Starting at (0, 0).
     >>> get_one_path(['R2', 'U1'])
-    [Visit(position=(1, 0), steps=1), Visit(position=(2, 0), steps=2), Visit(position=(2, 1), steps=3)]
+    [(1, 0), (2, 0), (2, 1)]
     """
     path = []
-    last_position = Visit(position=(0, 0), steps=0)
+    last_position = (0, 0)
     for command in commands:
         path += list(apply_one_command(last_position, command))
         last_position = path[-1]
@@ -72,8 +67,8 @@ def get_distance_of_closest_intersections(commands1, commands2):
     ...   )
     135
     """
-    path1 = (visit.position for visit in get_one_path(commands1))
-    path2 = (visit.position for visit in get_one_path(commands2))
+    path1 = get_one_path(commands1)
+    path2 = get_one_path(commands2)
     intersections = set(path1).intersection(set(path2))
     return min(map(lambda x: np.abs(x[0])+np.abs(x[1]), intersections))
 
@@ -93,22 +88,11 @@ def get_steps_of_closest_intersections(commands1, commands2):
     410
     """
 
-    def convert_to_dict(visit):
-        visit_dict = dict()
-        for v in visit:
-            if v.position not in visit_dict:
-                visit_dict[v.position] = v.steps
-            if (v.position in visit_dict) and (v.steps < visit_dict[v.position]):
-                visit_dict[v.position] = v.steps
-        return visit_dict
-
-    path1 = convert_to_dict(get_one_path(commands1))
-    path2 = convert_to_dict(get_one_path(commands2))
-
-    intersections = set(path1.keys()).intersection(path2.keys())
-    distances = [path1[i]+path2[i] for i in intersections]
-
-    return min(distances)
+    path1 = get_one_path(commands1)
+    path2 = get_one_path(commands2)
+    intersections = set(path1).intersection(set(path2))
+    # index is 0 based, therefore +2
+    return min(path1.index(intersection) + path2.index(intersection) for intersection in intersections) + 2
 
 
 with open("./data/day03.txt") as f:
