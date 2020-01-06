@@ -146,13 +146,14 @@ def shortest_path_to_santa(puzzle_input):
     return min(dist for dist in map(lambda x: shortest_path_via(puzzle_input, x), objects) if dist)
 
 
-with open("./data/day06.txt") as f:
-    puzzle_input = f.read().split()
+if __name__ == "__main__":
+    with open("./data/day06.txt") as f:
+        puzzle_input = f.read().split()
 
-assert is_binary_tree(puzzle_input)
+    assert is_binary_tree(puzzle_input)
 
-print('PART ONE')
-print(total_number_of_orbits(puzzle_input))
+    print('PART ONE')
+    print(total_number_of_orbits(puzzle_input))
 
-print('PART TWO')
-print(shortest_path_to_santa(puzzle_input))
+    print('PART TWO')
+    print(shortest_path_to_santa(puzzle_input))

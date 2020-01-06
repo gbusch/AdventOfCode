@@ -41,19 +41,19 @@ def decode_image(image):
     return decoded
 
 
-with open("./data/day08.txt") as f:
-    data = np.array([int(i) for i in f.read()])
+if __name__ == "__main__":
+    with open("./data/day08.txt") as f:
+        data = np.array([int(i) for i in f.read()])
 
+    image = data.reshape(-1, 6, 25)
+    image_counts = count_digits_per_layer(image)
+    image_counts_min0 = sorted(image_counts, key=lambda x: x.get(0))[0]
 
-image = data.reshape(-1, 6, 25)
-image_counts = count_digits_per_layer(image)
-image_counts_min0 = sorted(image_counts, key=lambda x: x.get(0))[0]
+    print('PART ONE')
+    print(image_counts_min0.get(1) * image_counts_min0.get(2))
 
-print('PART ONE')
-print(image_counts_min0.get(1) * image_counts_min0.get(2))
+    print('PART TWO')
+    decoded_image = decode_image(image)
 
-print('PART TWO')
-decoded_image = decode_image(image)
-
-plt.imshow(decoded_image)
-plt.show()
+    plt.imshow(decoded_image)
+    plt.show()

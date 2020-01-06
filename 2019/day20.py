@@ -68,9 +68,9 @@ def generate_network(grid, dims, portals):
 
 def find_shortest_path_length(data_path):
     """
-    >>> find_shortest_path_length('./data/day20a.txt')
+    >>> find_shortest_path_length('./2019/data/day20a.txt')
     23
-    >>> find_shortest_path_length('./data/day20b.txt')
+    >>> find_shortest_path_length('./2019/data/day20b.txt')
     58
     """
     with open(data_path) as f:
@@ -83,5 +83,6 @@ def find_shortest_path_length(data_path):
     return nx.shortest_path_length(graph, start, end)
 
 
-print("PART ONE")
-print(find_shortest_path_length('./data/day20.txt'))
+if __name__ == "__main__":
+    print("PART ONE")
+    print(find_shortest_path_length('./data/day20.txt'))

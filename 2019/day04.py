@@ -87,16 +87,17 @@ def password_check_part2(numbers):
             )
 
 
-PUZZLE_INPUT = "134564-585159"
-number_from, number_to = map(int, PUZZLE_INPUT.split("-"))
-input_range = np.arange(number_from, number_to+1)
+if __name__ == "__main__":
+    PUZZLE_INPUT = "134564-585159"
+    number_from, number_to = map(int, PUZZLE_INPUT.split("-"))
+    input_range = np.arange(number_from, number_to+1)
 
-print('PART ONE')
-part_one = list(map(password_check, input_range)).count(True)
-print(part_one)
-assert part_one == 1929
+    print('PART ONE')
+    part_one = list(map(password_check, input_range)).count(True)
+    print(part_one)
+    assert part_one == 1929
 
-print('PART TWO')
-part_two = list(map(password_check_part2, input_range)).count(True)
-print(part_two)
-assert part_two == 1306
+    print('PART TWO')
+    part_two = list(map(password_check_part2, input_range)).count(True)
+    print(part_two)
+    assert part_two == 1306

@@ -90,12 +90,12 @@ def opcode_decoder(opcode):
                   modes=[int(opcode_full[2]), int(opcode_full[1]), int(opcode_full[0])])
 
 
-with open("./data/day05.txt") as f:
-    data = list(map(int, f.readline().split(",")))
+if __name__ == "__main__":
+    with open("./data/day05.txt") as f:
+        data = list(map(int, f.readline().split(",")))
 
+    print("PART ONE")
+    print(intcode_calculation(data.copy())[1])
 
-print("PART ONE")
-print(intcode_calculation(data.copy())[1])
-
-print("PART TWO")
-print(intcode_calculation(data.copy(), input_id=5)[1])
+    print("PART TWO")
+    print(intcode_calculation(data.copy(), input_id=5)[1])

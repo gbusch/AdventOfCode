@@ -20,4 +20,4 @@ def needed_input(output, amount=1):
     return needed
 
 
-print(needed_input('FUEL', 2))
+#print(needed_input('FUEL', 2))

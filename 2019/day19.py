@@ -131,7 +131,6 @@ if __name__ == "__main__":
     with open("./data/day19.txt") as f:
         data = list(map(int, f.read().split(',')))
 
-
     print("PART ONE")
     import numpy as np
     beam = np.ndarray((50, 50), dtype=int)

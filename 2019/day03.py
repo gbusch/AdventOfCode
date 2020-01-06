@@ -92,18 +92,19 @@ def get_steps_of_closest_intersections(commands1, commands2):
     path2 = get_one_path(commands2)
     intersections = set(path1).intersection(set(path2))
     # index is 0 based, therefore +2
-    return min(map(lambda x: path1.index(x) + path2.index(x), intersections))
+    return min(map(lambda x: path1.index(x) + path2.index(x), intersections)) + 2
 
 
-with open("./data/day03.txt") as f:
-    data = f.readlines()
+if __name__ == "__main__":
+    with open("./data/day03.txt") as f:
+        data = f.readlines()
 
-data = list(map(lambda x: x.split(','), data))
+    data = list(map(lambda x: x.split(','), data))
 
-print("PART ONE")
-print(get_distance_of_closest_intersections(data[0], data[1]))
-assert get_distance_of_closest_intersections(data[0], data[1]) == 855
+    print("PART ONE")
+    print(get_distance_of_closest_intersections(data[0], data[1]))
+    assert get_distance_of_closest_intersections(data[0], data[1]) == 855
 
-print("PART TWO")
-print(get_steps_of_closest_intersections(data[0], data[1]))
-assert get_steps_of_closest_intersections(data[0], data[1]) == 11238
+    print("PART TWO")
+    print(get_steps_of_closest_intersections(data[0], data[1]))
+    assert get_steps_of_closest_intersections(data[0], data[1]) == 11238

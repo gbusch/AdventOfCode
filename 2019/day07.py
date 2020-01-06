@@ -137,12 +137,12 @@ def part_2(integers):
     return max(map(lambda x: run_amplifiers_with_feedback(integers.copy(), x), sequences))
 
 
-with open("./data/day07.txt") as f:
-    data = list(map(int, f.readline().split(",")))
+if __name__ == "__main__":
+    with open("./data/day07.txt") as f:
+        data = list(map(int, f.readline().split(",")))
 
+    print("PART ONE")
+    print(part_1(data))
 
-print("PART ONE")
-print(part_1(data))
-
-print("PART TWO")
-print(part_2(data))
+    print("PART TWO")
+    print(part_2(data))

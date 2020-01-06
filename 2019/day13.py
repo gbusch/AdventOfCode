@@ -22,7 +22,7 @@ def intcode_calculation(integers, input_values=[1], position=0, relative_base=0,
     >>> len(str(intcode_calculation([1102,34915192,34915192,7,4,7,99,0])[1][0]))
     16
     >>> intcode_calculation([104,1125899906842624,99])[1]
-    [1125899906842624]
+    (1125899906842624,)
     """
     if isinstance(integers, list):
         integers = convert_to_dict(integers)
@@ -156,15 +156,16 @@ def play_with_joystick(data):
             return score
 
 
-with open("./data/day13.txt") as f:
-    data = list(map(int, f.read().split(',')))
-    game = play(data)
-    print("PART ONE")
-    block_tiles = sum(map(lambda x: x[2] == 2, game))
-    assert block_tiles == 320
-    print(block_tiles)
+if __name__ == "__main__":
+    with open("./data/day13.txt") as f:
+        data = list(map(int, f.read().split(',')))
+        game = play(data)
+        print("PART ONE")
+        block_tiles = sum(map(lambda x: x[2] == 2, game))
+        assert block_tiles == 320
+        print(block_tiles)
 
-    print("PART TWO")
-    final_score = play_with_joystick(data)
-    assert final_score == 15156
-    print(final_score)
+        print("PART TWO")
+        final_score = play_with_joystick(data)
+        assert final_score == 15156
+        print(final_score)

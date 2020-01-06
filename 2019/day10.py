@@ -48,13 +48,13 @@ def get_asteroids(path):
 
 def part_1(path):
     """
-    >>> part_1("./data/day10a.txt")
+    >>> part_1("./2019/data/day10a.txt")
     ((5, 8), 33)
-    >>> part_1("./data/day10b.txt")
+    >>> part_1("./2019/data/day10b.txt")
     ((1, 2), 35)
-    >>> part_1("./data/day10c.txt")
+    >>> part_1("./2019/data/day10c.txt")
     ((6, 3), 41)
-    >>> part_1("./data/day10d.txt")
+    >>> part_1("./2019/data/day10d.txt")
     ((11, 13), 210)
     """
     data = get_asteroids(path)
@@ -65,11 +65,11 @@ def part_1(path):
 
 def part_2(path, reference, step):
     """
-    >>> part_2("./data/day10e.txt", (8, 3), 6)
+    >>> part_2("./2019/data/day10e.txt", (8, 3), 6)
     (11, 1)
-    >>> part_2("./data/day10d.txt", (11, 13), 2)
+    >>> part_2("./2019/data/day10d.txt", (11, 13), 2)
     (12, 1)
-    >>> part_2("./data/day10d.txt", (11, 13), 200)
+    >>> part_2("./2019/data/day10d.txt", (11, 13), 200)
     (8, 2)
     """
     data = get_asteroids(path)

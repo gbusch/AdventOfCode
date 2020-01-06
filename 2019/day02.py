@@ -38,19 +38,20 @@ def run_with_input(integers, noun, verb):
     return intcode_calculation(integers_input)
 
 
-with open("./data/day02.txt") as f:
-    data = f.read().split(",")
+if __name__ == "__main__":
+    with open("./data/day02.txt") as f:
+        data = f.read().split(",")
 
-integers = list(map(int, data))
+    integers = list(map(int, data))
 
-print("PART ONE")
-solution_part1 = run_with_input(integers, 12, 2)[0]
-print(solution_part1)
-assert solution_part1 == 5434663
+    print("PART ONE")
+    solution_part1 = run_with_input(integers, 12, 2)[0]
+    print(solution_part1)
+    assert solution_part1 == 5434663
 
-print("PART TWO")
-for noun in range(100):
-    for verb in range(100):
-        result = run_with_input(integers, noun, verb)[0]
-        if result == 19690720:
-            print(noun, verb, noun*100+verb)
+    print("PART TWO")
+    for noun in range(100):
+        for verb in range(100):
+            result = run_with_input(integers, noun, verb)[0]
+            if result == 19690720:
+                print(noun, verb, noun*100+verb)

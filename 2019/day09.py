@@ -122,11 +122,12 @@ def convert_to_dict(integer_list):
     return {k: v for k, v in enumerate(integer_list)}
 
 
-with open("./data/day09.txt") as f:
-    data = list(map(int, f.read().split(',')))
+if __name__ == "__main__":
+    with open("./data/day09.txt") as f:
+        data = list(map(int, f.read().split(',')))
 
-print("PART ONE")
-print(intcode_calculation(data, input_values=[1])[1])
+    print("PART ONE")
+    print(intcode_calculation(data, input_values=[1])[1])
 
-print("PART TWO")
-print(intcode_calculation(data, input_values=[2])[1])
+    print("PART TWO")
+    print(intcode_calculation(data, input_values=[2])[1])

@@ -31,17 +31,16 @@ def all_fuel_per_module(mass):
         return additional_fuel + all_fuel_per_module(additional_fuel)
 
 
-with open("./data/day01.txt") as f:
-    data = f.read().splitlines()
+if __name__ == "__main__":
+    with open("./data/day01.txt") as f:
+        data = f.read().splitlines()
 
-data = list(map(int, data))
+    data = list(map(int, data))
 
-print("PART ONE")
-total_fuel = sum(map(fuel_per_module, data))
-print(total_fuel)
+    print("PART ONE")
+    total_fuel = sum(map(fuel_per_module, data))
+    print(total_fuel)
 
-
-print("PART TWO")
-total_fuel = sum(map(all_fuel_per_module, data))
-print(total_fuel)
-
+    print("PART TWO")
+    total_fuel = sum(map(all_fuel_per_module, data))
+    print(total_fuel)

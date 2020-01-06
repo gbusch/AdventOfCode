@@ -44,13 +44,15 @@ def biodiversity_rating(grid_list):
     return rating
 
 
-grid = parse_input("./data/day24.txt")
-already_seen = set(grid)
-while True:
-    grid = new_state(grid)
-    grid_list = convert_to_list(grid)
-    if grid_list in already_seen:
-        break
-    already_seen.add(grid_list)
+if __name__ == "__main__":
+    grid = parse_input("./data/day24.txt")
+    already_seen = set(grid)
+    while True:
+        grid = new_state(grid)
+        grid_list = convert_to_list(grid)
+        if grid_list in already_seen:
+            break
+        already_seen.add(grid_list)
 
-print(biodiversity_rating(convert_to_list(grid)))
+    print("PART ONE")
+    print(biodiversity_rating(convert_to_list(grid)))
