@@ -92,7 +92,7 @@ def get_steps_of_closest_intersections(commands1, commands2):
     path2 = get_one_path(commands2)
     intersections = set(path1).intersection(set(path2))
     # index is 0 based, therefore +2
-    return min(path1.index(intersection) + path2.index(intersection) for intersection in intersections) + 2
+    return min(map(lambda x: path1.index(x) + path2.index(x), intersections))
 
 
 with open("./data/day03.txt") as f:
