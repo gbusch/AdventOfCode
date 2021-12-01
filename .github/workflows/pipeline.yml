@@ -3,7 +3,7 @@ name: Testing
 on: [push]
 
 jobs:
-  build:
+  testing:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -17,7 +17,7 @@ jobs:
         pip install -r requirements.txt
     - name: Run doctests
       run: |
-        python -m doctest **/*.py
+        python -m doctest 2021/*.py
     - name: Run static type check
       run: |
-        python -m mypy --ignore-missing-imports **/*.py
+        python -m mypy --ignore-missing-imports 2021/*.py
