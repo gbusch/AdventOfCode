@@ -14,7 +14,7 @@ def part1(inlist: list[int]) -> int:
     return df["increase"].sum()
 
 
-def part2(inlist: list[float], window: int) -> int:
+def part2(inlist: list[int], window: int) -> int:
     """
     >>> inlist = [199, 200, 208, 210, 200, 207, 240, 269, 260, 263]
     >>> part2(inlist, 3)
