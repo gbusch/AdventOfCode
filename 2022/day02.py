@@ -34,7 +34,11 @@ def parse_input(inp_str: str) -> List[Tuple[str, str]]:
     >>> parse_input(inp_str)
     [('A', 'Y'), ('B', 'X'), ('C', 'Z')]
     """
-    return [tuple(round.split(maxsplit=1)) for round in inp_str.splitlines()]
+    input_tuples = []
+    for round in inp_str.splitlines():
+        opponent, you = round.split(maxsplit=1)
+        input_tuples.append((opponent, you))
+    return input_tuples
 
 
 def score_round(round: Tuple[str, str]) -> int:

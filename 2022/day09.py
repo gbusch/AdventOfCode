@@ -62,13 +62,14 @@ def move_head(pos: Position, direction) -> Position:
     """
     match direction:
         case "R":
-            return Position(pos.x + 1, pos.y)
+            new_pos = Position(pos.x + 1, pos.y)
         case "L":
-            return Position(pos.x - 1, pos.y)
+            new_pos = Position(pos.x - 1, pos.y)
         case "U":
-            return Position(pos.x, pos.y + 1)
+            new_pos = Position(pos.x, pos.y + 1)
         case "D":
-            return Position(pos.x, pos.y - 1)
+            new_pos = Position(pos.x, pos.y - 1)
+    return new_pos
 
 
 def move_tail(tail: Position, head: Position) -> Position:

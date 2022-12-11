@@ -43,6 +43,7 @@ def parse_moves(move_line: str) -> Move:
     Move(steps=13, origin=4, destination=2)
     """
     matches = re.match(r"move (\d+) from (\d+) to (\d+)", move_line)
+    assert matches
     return Move(
         steps=int(matches.group(1)),
         origin=int(matches.group(2)),
@@ -77,7 +78,7 @@ def make_9001_move(crates: Dict[int, List[str]], move: Move) -> Dict[int, List[s
     return crates
 
 
-def part1(input_setup: Dict[int, List[str]], moves: Move) -> str:
+def part1(input_setup: Dict[int, List[str]], moves: List[Move]) -> str:
     """
     >>> part1({1: ['Z', 'N'], 2: ['M', 'C', 'D'], 3: ['P']}, [Move(1, 2, 1), Move(3, 1, 3), Move(2, 2, 1), Move(1, 1, 2)])
     'CMZ'
@@ -86,7 +87,7 @@ def part1(input_setup: Dict[int, List[str]], moves: Move) -> str:
     return "".join(final_setup[i].pop() for i in range(1, max(final_setup.keys()) + 1))
 
 
-def part2(input_setup: Dict[int, List[str]], moves: Move) -> str:
+def part2(input_setup: Dict[int, List[str]], moves: List[Move]) -> str:
     """
     >>> part2({1: ['Z', 'N'], 2: ['M', 'C', 'D'], 3: ['P']}, [Move(1, 2, 1), Move(3, 1, 3), Move(2, 2, 1), Move(1, 1, 2)])
     'MCD'

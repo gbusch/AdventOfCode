@@ -15,6 +15,7 @@ def find_marker(datastream: str, distinct_no: int) -> int:
         marker = datastream[i : i + distinct_no]
         if len(marker) == len(set(marker)):
             return i + distinct_no
+    return -1
 
 
 if __name__ == "__main__":

@@ -61,30 +61,28 @@ Monkey 3:
 def parse_monkeys(input_str: str) -> List[Monkey]:
     monkeys = []
     for monkey in input_str.split("\n\n"):
+        starting_items_parsing = re.search(r"Starting items: ([0-9, ]*)", monkey)
+        assert starting_items_parsing
         operation_parsing = re.search(
             "Operation: new = old ([+*]) ([0-9]+|old)", monkey
         )
+        assert operation_parsing
+        factor_parsing = re.search(r"Test: divisible by (\d+)", monkey)
+        assert factor_parsing
+        monkey_true_parsing = re.search(r"If true: throw to monkey (\d)", monkey)
+        assert monkey_true_parsing
+        monkey_false_parsing = re.search(r"If false: throw to monkey (\d)", monkey)
+        assert monkey_false_parsing
         monkeys.append(
             Monkey(
                 items=deque(
-                    [
-                        int(item)
-                        for item in re.search(r"Starting items: ([0-9, ]*)", monkey)
-                        .group(1)
-                        .split(",")
-                    ]
+                    [int(item) for item in starting_items_parsing.group(1).split(",")]
                 ),
                 operator=operation_parsing.group(1),
                 operation_factor=operation_parsing.group(2),
-                test_factor=int(
-                    re.search(r"Test: divisible by (\d+)", monkey).group(1)
-                ),
-                monkey_true=int(
-                    re.search(r"If true: throw to monkey (\d)", monkey).group(1)
-                ),
-                monkey_false=int(
-                    re.search(r"If false: throw to monkey (\d)", monkey).group(1)
-                ),
+                test_factor=int(factor_parsing.group(1)),
+                monkey_true=int(monkey_true_parsing.group(1)),
+                monkey_false=int(monkey_false_parsing.group(1)),
             )
         )
     return monkeys
