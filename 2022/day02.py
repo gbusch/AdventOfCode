@@ -36,6 +36,7 @@ def parse_input(inp_str: str) -> List[Tuple[str, str]]:
     """
     return [tuple(round.split(maxsplit=1)) for round in inp_str.splitlines()]
 
+
 def score_round(round: Tuple[str, str]) -> int:
     """
     >>> score_round(("A", "Y"))
@@ -58,9 +59,7 @@ def make_choice(opponent: str, result: str) -> str:
     'X'
     """
     choice_map = {
-        (opponent, result): choice 
-        for (opponent, choice), result 
-        in RULES.items()
+        (opponent, result): choice for (opponent, choice), result in RULES.items()
     }
     return choice_map[(opponent, result)]
 

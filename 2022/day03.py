@@ -29,7 +29,12 @@ def part2(rucksacks: List[str]) -> int:
     ... ])
     70
     """
-    return sum([get_priority(get_group_batch(group)) for group in list(group_of_three(rucksacks))])
+    return sum(
+        [
+            get_priority(get_group_batch(group))
+            for group in list(group_of_three(rucksacks))
+        ]
+    )
 
 
 def find_overlap_item(content: str) -> str:
@@ -86,7 +91,7 @@ def group_of_three(big_list: List[str]) -> Iterator[List[str]]:
     [['a', 'b', 'c'], ['d', 'e', 'f']]
     """
     for i in range(0, len(big_list), 3):
-        yield big_list[i:i+3]
+        yield big_list[i : i + 3]
 
 
 if __name__ == "__main__":
