@@ -1,3 +1,5 @@
+from typing import List
+
 EXAMPLE_INPUT = """addx 15
 addx -11
 addx 6
@@ -146,7 +148,7 @@ noop
 noop"""
 
 
-def get_signal_strengths(input_str):
+def get_signal_strengths(input_str: str) -> List[int]:
     x = [
         1,
     ]
@@ -158,11 +160,11 @@ def get_signal_strengths(input_str):
     return x
 
 
-def sum_signal_strenghts(X):
+def sum_signal_strenghts(X: List[int]) -> int:
     return sum([X[x - 1] * x for x in range(20, 221, 40)])
 
 
-def print_drawing(X):
+def print_drawing(X: List[int]) -> List[str]:
     drawing = []
     for i in range(240):
         if i > 0 and i % 40 == 0:
@@ -174,32 +176,32 @@ def print_drawing(X):
     return drawing
 
 
-X = get_signal_strengths(EXAMPLE_INPUT)
-assert X[20 - 1] == 21
-assert X[60 - 1] == 19
-assert X[100 - 1] == 18
-assert X[140 - 1] == 21
-assert X[180 - 1] == 16
-assert X[220 - 1] == 18, X[55:65]
-assert sum_signal_strenghts(X) == 13140
+if __name__ == "__main__":
+    X = get_signal_strengths(EXAMPLE_INPUT)
+    assert X[20 - 1] == 21
+    assert X[60 - 1] == 19
+    assert X[100 - 1] == 18
+    assert X[140 - 1] == 21
+    assert X[180 - 1] == 16
+    assert X[220 - 1] == 18, X[55:65]
+    assert sum_signal_strenghts(X) == 13140
 
-assert (
-    "".join(print_drawing(X))
-    == """##..##..##..##..##..##..##..##..##..##..
-###...###...###...###...###...###...###.
-####....####....####....####....####....
-#####.....#####.....#####.....#####.....
-######......######......######......####
-#######.......#######.......#######....."""
-)
+    assert (
+        "".join(print_drawing(X))
+        == """##..##..##..##..##..##..##..##..##..##..
+    ###...###...###...###...###...###...###.
+    ####....####....####....####....####....
+    #####.....#####.....#####.....#####.....
+    ######......######......######......####
+    #######.......#######.......#######....."""
+    )
 
+    with open("./data/day10.txt", "r") as f:
+        data = f.read()
 
-with open("./data/day10.txt", "r") as f:
-    data = f.read()
+    print("part1")
+    X = get_signal_strengths(data)
+    print(sum_signal_strenghts(X))
 
-print("part1")
-X = get_signal_strengths(data)
-print(sum_signal_strenghts(X))
-
-print("part2")
-print("".join(print_drawing(X)))
+    print("part2")
+    print("".join(print_drawing(X)))
