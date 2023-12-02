@@ -40,9 +40,11 @@ class Game:
         """
         game_name, game_sets_tmp = game.split(":")
         game_id = game_name.split(" ")[1]
-        game_sets_tmp = game_sets_tmp.split(";")
-        game_sets_tmp = [GameSet.parse_game_set(game_set) for game_set in game_sets_tmp]
-        return cls(int(game_id), game_sets_tmp)
+        game_sets_list_tmp = game_sets_tmp.split(";")
+        game_sets = [
+            GameSet.parse_game_set(game_set) for game_set in game_sets_list_tmp
+        ]
+        return cls(int(game_id), game_sets)
 
     def game_possible(self) -> bool:
         """Check if a game is possible.
@@ -78,8 +80,8 @@ def part1(input: str) -> int:
     ... Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green''')
     8
     """
-    games = input.split("\n")
-    games = [Game.parse_game(game) for game in games]
+    games_tmp: list[str] = input.split("\n")
+    games = [Game.parse_game(game) for game in games_tmp]
     return sum(game.id for game in games if game.game_possible())
 
 
@@ -92,8 +94,8 @@ def part2(input: str) -> int:
     ... Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green''')
     2286
     """
-    games = input.split("\n")
-    games = [Game.parse_game(game) for game in games]
+    games_tmp: list[str] = input.split("\n")
+    games = [Game.parse_game(game) for game in games_tmp]
     return sum(game.find_power() for game in games)
 
 

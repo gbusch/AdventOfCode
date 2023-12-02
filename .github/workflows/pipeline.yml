@@ -18,6 +18,6 @@ jobs:
     - name: Run doctests
       run: |
         python -m doctest 2023/*.py
-    # - name: Run static type check
-    #   run: |
-    #     python -m mypy --ignore-missing-imports 2023/*.py
+    - name: Run static type check
+      run: |
+        python -m mypy --ignore-missing-imports 2023/*.py
