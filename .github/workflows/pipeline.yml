@@ -25,4 +25,4 @@ jobs:
       uses: psf/black@stable
       with:
         options: "--check --verbose"
-        src: "2023/*.py"
+        src: "./2023"
