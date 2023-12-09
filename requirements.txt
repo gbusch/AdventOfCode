@@ -3,3 +3,4 @@
 pandas
 mypy
 nptyping
+numpy
