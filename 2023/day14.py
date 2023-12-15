@@ -13,7 +13,7 @@ def part1(input: str) -> int:
     136
     """
     return sum(column_load(flip_column("".join(c))) for c in zip(*input.splitlines()))
-    
+
 
 def column_load(column: str) -> int:
     """
@@ -22,7 +22,8 @@ def column_load(column: str) -> int:
     >>> column_load("..OO.#.O.")
     15
     """
-    return sum(i+1 for i, s in enumerate(column[::-1]) if s=="O")
+    return sum(i + 1 for i, s in enumerate(column[::-1]) if s == "O")
+
 
 def flip_column(column: str) -> str:
     """
@@ -40,8 +41,9 @@ def flip_column(column: str) -> str:
     count_O = column.count("O")
     return (count_O * "O") + (len(column) - count_O) * "."
 
+
 if __name__ == "__main__":
     with open("2023/data/day14.txt", "r") as f:
         data = f.read()
-    
+
     print(part1(data))
