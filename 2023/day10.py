@@ -55,6 +55,10 @@ def part2(input: str, replacement: str) -> int:
     """
     G, start = build_graph(input, replacement)
     print_connected(G, input)
+    mapping = {node: i for i, nodes in enumerate(nx.connected_components(G)) for node in nodes}
+    start_mapping = mapping[start]
+    remove_nodes = {node for node in G.nodes if mapping[node] == start_mapping}
+    G.remove_nodes_from(remove_nodes)
     connected = [node for node in set.union(*(x for x in nx.connected_components(G) if (0,0) not in x and start not in x)) if node[0]%2==0 and node[1]%2==0]
     print(connected)
     return len(connected)
@@ -97,11 +101,11 @@ def print_connected(G: nx.Graph, input: str) -> str:
     lines = input.splitlines()
     n_y = len(lines)
     n_x = len(lines[0])
-    for y in range(n_y):
+    for y in range(-1, 2*n_y+1):
         line = []
-        for x in range(n_x):
+        for x in range(-1, 2*n_x+1):
             try:
-                line.append(mapping[(2*x, 2*y)])
+                line.append(mapping[(x, y)])
             except: 
                 line.append(".")
         print("".join(line))
