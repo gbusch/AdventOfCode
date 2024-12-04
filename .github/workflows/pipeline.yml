@@ -17,12 +17,12 @@ jobs:
         pip install -r requirements.txt
     - name: Run doctests
       run: |
-        python -m doctest 2023/*.py
+        python -m doctest 2024/*.py
     - name: Run static type check
       run: |
-        python -m mypy --ignore-missing-imports 2023/*.py
+        python -m mypy --ignore-missing-imports 2024/*.py
     - name: Check format
       uses: psf/black@stable
       with:
         options: "--check --verbose"
-        src: "./2023"
+        src: "./2024"
